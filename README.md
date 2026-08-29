@@ -49,9 +49,18 @@ Store the contents of the `payload` field into a plaintext file called `wallet.a
    ```bash
    python3 blockchain_legacy_recovery_tool.py
    ```
+   💡 See **Command-Line Arguments** section for optional arguments!
 4. Enter your wallet password when prompted. The tool will parse the container, unlock the parameters, and automatically convert any raw Base58 key primitives into standard WIF keys that can be cleanly imported into wallets like Electrum.
 5. If the script is able to process the wallet, it will now output any legacy private keys it can find in it. **Important: Remember that having these private keys enables you or anyone else to have absolute and full control over the associated address and any funds it may contain. Do not share, screenshot, post, or store them in any unsafe manner!**
 6. Import the private key(s) into a newly created wallet you trust. You can e.g. use Electrum - but please see what wallet is currently considered safe, and fits your needs best. **Important: Imported private keys and their addresses are _not_ covered by the recovery seed phrase of a modern deterministic wallet! You should consider "sweeping" your recovered funds from their old address and transfer them over into a native receiving address the new wallet provides!**
+
+## ⌨️ Command-Line Arguments
+The `blockchain_legacy_recovery_tool.py` script offers two optional command-line flags to manage input data ingestion and output routing:
+
+| Parameter | Short | Type | Required | Default | Description |
+| :--- | :--- | :---: | :---: | :---: | :--- |
+| `--input` | `-i` | `string` | No | `wallet.aes.json` | Path to the local encrypted backup file. |
+| `--output` | `-o` | `string` | No | *None* | Optional path to save the plaintext extraction report. If omitted, the report prints directly to `stdout`. |
 
 ## 🙂 What's left to say?
 I hope this script helps people recovering their presumed lost funds. It handles a very niche issue for which the Blockchain.com support didn't have a solution for in over half a year of presumably aimless debugging. I was finally able to recover funds using this method. Feel free to improve upon the script or adjust it. It may very well fail for you out-of-the-box, if your issue isn't related to the one I was having. Feel free to reach out to me, but my options are limited, as it is very hard to debug these kind of things without having the wallet and its password. **And those two things are something you should not send anyone**.
